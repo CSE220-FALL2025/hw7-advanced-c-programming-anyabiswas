@@ -2,6 +2,7 @@
 
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
     return NULL;
+    int i = 0; 
 }
 
 matrix_sf* find_bst_sf(char name, bst_sf *root) {
