@@ -2,7 +2,7 @@
 
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
     return NULL;
-    int i = 0; 
+   
 }
 
 matrix_sf* find_bst_sf(char name, bst_sf *root) {
@@ -13,11 +13,41 @@ void free_bst_sf(bst_sf *root) {
 }
 
 matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
-    return NULL;
+  
+    if (mat1->num_rows != mat2->num_rows || mat1->num_cols != mat2->num_cols)
+        return NULL;
+
+    unsigned int rows = mat1->num_rows;
+    unsigned int cols = mat1->num_cols;
+    int result[rows * cols];
+
+    for (unsigned int i = 0; i < rows * cols; i++)
+        result[i] = mat1->values[i] + mat2->values[i];
+
+    return copy_matrix(rows, cols, result);
+
 }
 
 matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
-   return NULL;
+   if (mat1->num_cols != mat2->num_rows)
+        return NULL;
+
+    unsigned int m = mat1->num_rows;
+    unsigned int n = mat1->num_cols;
+    unsigned int p = mat2->num_cols;
+    int result[m * p];
+
+    for (unsigned int i = 0; i < m; i++) {
+        for (unsigned int j = 0; j < p; j++) {
+            int sum = 0;
+            for (unsigned int k = 0; k < n; k++)
+                sum += mat1->values[i*n + k] * mat2->values[k*p + j];
+            result[i*p + j] = sum;
+        }
+    }
+
+    return copy_matrix(m, p, result);
+
 }
 
 matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
