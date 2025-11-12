@@ -1,8 +1,8 @@
 {
   "id": "Criterion v2.4.2-24-g8ffe624 (bleeding)",
-  "passed": 33,
-  "failed": 37,
-  "errored": 14,
+  "passed": 35,
+  "failed": 35,
+  "errored": 12,
   "skipped": 0,
   "test_suites": [
     {
@@ -46,22 +46,20 @@
     },
     {
       "name": "base_operator_return",
-      "passed": 4,
-      "failed": 2,
-      "errored": 2,
+      "passed": 6,
+      "failed": 0,
+      "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "trans02",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 3,
+          "status": "PASSED"
         },
         {
           "name": "trans01",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 3,
+          "status": "PASSED"
         },
         {
           "name": "mult02",
@@ -515,13 +513,13 @@
       "skipped": 0,
       "tests": [
         {
-          "name": "create02",
+          "name": "create01",
           "assertions": 0,
           "status": "ERRORED",
           "messages": ["The test crashed."]
         },
         {
-          "name": "create01",
+          "name": "create02",
           "assertions": 0,
           "status": "ERRORED",
           "messages": ["The test crashed."]

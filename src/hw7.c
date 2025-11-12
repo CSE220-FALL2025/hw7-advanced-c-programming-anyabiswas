@@ -51,7 +51,19 @@ matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
 }
 
 matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
-    return NULL;
+    if (!mat) return NULL;
+
+    unsigned int rows = mat->num_rows;
+    unsigned int cols = mat->num_cols;
+    int result[rows * cols];
+
+    for (unsigned int i = 0; i < rows; i++) {
+        for (unsigned int j = 0; j < cols; j++) {
+            result[j * rows + i] = mat->values[i * cols + j];
+        }
+    }
+
+    return copy_matrix(cols, rows, result);
 }
 
 matrix_sf* create_matrix_sf(char name, const char *expr) {
