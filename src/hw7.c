@@ -1,7 +1,49 @@
 #include "hw7.h"
 
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
-    return NULL;
+        
+    //create new bst if root is null
+    if (root == NULL) {
+        bst_sf *node = malloc(sizeof(bst_sf));
+        node->mat = mat;
+        node->left_child = NULL;
+        node->right_child = NULL;
+        return node;
+    }
+
+    bst_sf *cur = root;
+
+    while (cur != NULL) {
+        //insert left 
+        if (mat->name < cur->mat->name) {
+          
+            if (cur->left_child == NULL) {
+                bst_sf *node = malloc(sizeof(bst_sf));
+                node->mat = mat;
+                node->left_child = NULL;
+                node->right_child = NULL;
+                cur->left_child = node;
+                break;
+            } else {
+                cur = cur->left_child;
+            }
+        }
+        else { //insert right
+           
+            if (cur->right_child == NULL) {
+                bst_sf *node = malloc(sizeof(bst_sf));
+                node->mat = mat;
+                node->left_child = NULL;
+                node->right_child = NULL;
+                cur->right_child = node;
+                break;
+            } else {
+                cur = cur->right_child;
+            }
+        }
+    }
+
+    return root;  
    
 }
 
