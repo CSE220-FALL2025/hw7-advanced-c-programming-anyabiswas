@@ -10,6 +10,7 @@ matrix_sf* find_bst_sf(char name, bst_sf *root) {
 }
 
 void free_bst_sf(bst_sf *root) {
+    
 }
 
 matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
@@ -67,8 +68,86 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
 }
 
 matrix_sf* create_matrix_sf(char name, const char *expr) {
-    return NULL;
+   
+   const char *p = expr;
+
+    //parse rows 
+    while (isspace((unsigned char)*p)) p++;
+
+    unsigned int rows = 0;
+    while (isdigit((unsigned char)*p)) {
+        rows = rows * 10 + (*p - '0');
+        p++;
+    }
+
+    //parse cols
+    while (isspace((unsigned char)*p)) p++;
+
+    unsigned int cols = 0;
+    while (isdigit((unsigned char)*p)) {
+        cols = cols * 10 + (*p - '0');
+        p++;
+    }
+
+    //move to [
+    while (*p && *p != '[') p++;
+    if (*p != '[') return NULL;
+    p++;      
+
+    //allocate for matrix 
+    int total = rows * cols;
+    matrix_sf *m = malloc(sizeof(matrix_sf) + total * sizeof(int));
+    m->name = name;
+    m->num_rows = rows;
+    m->num_cols = cols;
+
+    //parse integers
+    int index = 0;
+
+    while (index < total && *p) {
+
+        
+        while (isspace((unsigned char)*p) || *p == ';')
+            p++;
+
+        
+        int sign = 1;
+        if (*p == '-') {
+            sign = -1;
+            p++;
+        }
+
+        //parse integer value
+        int value = 0;
+        int saw_digits = 0;
+
+        while (isdigit((unsigned char)*p)) {
+            value = value * 10 + (*p - '0');
+            p++;
+            saw_digits = 1;
+        }
+
+        //store integer in matrix 
+        if (saw_digits) {
+            m->values[index++] = sign * value;
+        }
+
+        //advance to next character in expr 
+        while (*p && !isdigit((unsigned char)*p) &&
+               *p != '-' &&
+               *p != ']' &&
+               *p != ';')
+        {
+            p++;
+        }
+    }
+
+    return m;
+
+
 }
+
+
 
 char* infix2postfix_sf(char *infix) {
     return NULL;
@@ -78,8 +157,9 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
     return NULL;
 }
 
+
 matrix_sf *execute_script_sf(char *filename) {
-   return NULL;
+    return NULL;
 }
 
 // This is a utility function used during testing. Feel free to adapt the code to implement some of

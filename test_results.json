@@ -1,8 +1,8 @@
 {
   "id": "Criterion v2.4.2-24-g8ffe624 (bleeding)",
-  "passed": 35,
-  "failed": 35,
-  "errored": 12,
+  "passed": 37,
+  "failed": 33,
+  "errored": 10,
   "skipped": 0,
   "test_suites": [
     {
@@ -507,22 +507,20 @@
     },
     {
       "name": "base_create_matrix",
-      "passed": 0,
-      "failed": 2,
-      "errored": 2,
+      "passed": 2,
+      "failed": 0,
+      "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "create01",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 4,
+          "status": "PASSED"
         },
         {
           "name": "create02",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 4,
+          "status": "PASSED"
         }
       ]
     }
