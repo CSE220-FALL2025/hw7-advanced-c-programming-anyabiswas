@@ -1,8 +1,8 @@
 {
   "id": "Criterion v2.4.2-24-g8ffe624 (bleeding)",
-  "passed": 43,
-  "failed": 27,
-  "errored": 7,
+  "passed": 47,
+  "failed": 23,
+  "errored": 3,
   "skipped": 0,
   "test_suites": [
     {
@@ -109,34 +109,30 @@
     },
     {
       "name": "base_infix2postfix",
-      "passed": 0,
-      "failed": 4,
-      "errored": 4,
+      "passed": 4,
+      "failed": 0,
+      "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "infix2postfix04",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 1,
+          "status": "PASSED"
         },
         {
           "name": "infix2postfix03",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 1,
+          "status": "PASSED"
         },
         {
           "name": "infix2postfix02",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 1,
+          "status": "PASSED"
         },
         {
           "name": "infix2postfix01",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 1,
+          "status": "PASSED"
         }
       ]
     },

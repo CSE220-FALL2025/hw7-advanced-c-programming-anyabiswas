@@ -211,10 +211,64 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
 
 }
 
+static int precedence(char op) {
+    if (op == '\'') return 3;   // highest
+    if (op == '*')  return 2;
+    if (op == '+')  return 1;
+    return 0;
+}
 
 
 char* infix2postfix_sf(char *infix) {
-    return NULL;
+    char opstack[1024];
+    int top = -1;
+
+  
+    char *post = malloc(strlen(infix) * 2 + 1);
+    int k = 0;
+
+    for (int i = 0; infix[i] != '\0'; i++) {
+
+        char c = infix[i];
+
+        if (isspace((unsigned char)c))
+            continue;
+
+        //matrix names 
+        if (c >= 'A' && c <= 'Z') {
+            post[k++] = c;
+        }
+
+        /* left parenthesis */
+        else if (c == '(') {
+            opstack[++top] = c;
+        }
+
+        /* right parenthesis */
+        else if (c == ')') {
+            while (top >= 0 && opstack[top] != '(')
+                post[k++] = opstack[top--];
+            if (top >= 0) top--;  
+        }
+
+        
+        else {
+            while (top >= 0 &&
+                   opstack[top] != '(' &&
+                   precedence(opstack[top]) >= precedence(c)) {
+
+                post[k++] = opstack[top--];
+            }
+            opstack[++top] = c;  // push operator
+        }
+    }
+
+    
+    while (top >= 0)
+        post[k++] = opstack[top--];
+
+    post[k] = '\0';
+    return post;
 }
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
