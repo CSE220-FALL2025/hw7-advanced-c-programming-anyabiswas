@@ -1,8 +1,8 @@
 {
   "id": "Criterion v2.4.2-24-g8ffe624 (bleeding)",
-  "passed": 47,
-  "failed": 23,
-  "errored": 3,
+  "passed": 50,
+  "failed": 20,
+  "errored": 0,
   "skipped": 0,
   "test_suites": [
     {
@@ -232,12 +232,12 @@
           "status": "PASSED"
         },
         {
-          "name": "script15",
+          "name": "script14",
           "assertions": 1,
           "status": "PASSED"
         },
         {
-          "name": "script14",
+          "name": "script15",
           "assertions": 1,
           "status": "PASSED"
         },
@@ -437,7 +437,7 @@
           ]
         },
         {
-          "name": "add_mats03",
+          "name": "add_mats02",
           "assertions": 1,
           "status": "FAILED",
           "messages": [
@@ -445,7 +445,7 @@
           ]
         },
         {
-          "name": "add_mats02",
+          "name": "add_mats03",
           "assertions": 1,
           "status": "FAILED",
           "messages": [
@@ -464,28 +464,25 @@
     },
     {
       "name": "base_evaluate_expr",
-      "passed": 0,
-      "failed": 3,
-      "errored": 3,
+      "passed": 3,
+      "failed": 0,
+      "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "expr03",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 3,
+          "status": "PASSED"
         },
         {
           "name": "expr02",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 3,
+          "status": "PASSED"
         },
         {
           "name": "expr01",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 3,
+          "status": "PASSED"
         }
       ]
     },

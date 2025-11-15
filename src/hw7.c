@@ -272,7 +272,73 @@ char* infix2postfix_sf(char *infix) {
 }
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
-    return NULL;
+    
+    //convert infix to postfix 
+    char *postfix = infix2postfix_sf(expr);
+
+    int capacity = 1024;
+    int top = -1;
+    matrix_sf **stack = malloc(sizeof(matrix_sf*) * capacity);
+
+    
+    for (int i = 0; postfix[i] != '\0'; i++) {
+
+        char c = postfix[i];
+
+        if (isspace((unsigned char)c))
+            continue;
+
+        
+        if (c >= 'A' && c <= 'Z') {
+            matrix_sf *m = find_bst_sf(c, root);
+            stack[++top] = m;   
+        }
+
+        else if (c == '\'') {
+
+            matrix_sf *m = stack[top--];
+            matrix_sf *t = transpose_mat_sf(m);
+
+            if (!(m->name >= 'A' && m->name <= 'Z'))
+                free(m);
+
+            t->name = '?';
+            stack[++top] = t;
+        }
+
+        else if (c == '+' || c == '*') {
+
+            matrix_sf *right = stack[top--];
+            matrix_sf *left  = stack[top--];
+
+            matrix_sf *res;
+
+            if (c == '+')
+                res = add_mats_sf(left, right);
+            else
+                res = mult_mats_sf(left, right);
+
+            if (!(left->name >= 'A' && left->name <= 'Z'))
+                free(left);
+
+            if (!(right->name >= 'A' && right->name <= 'Z'))
+                free(right);
+
+            res->name = '?';
+            stack[++top] = res;
+        }
+    }
+
+    
+    matrix_sf *final = stack[top--];
+
+    free(postfix);
+    free(stack);
+
+    
+    final->name = name;
+
+    return final;
 }
 
 
