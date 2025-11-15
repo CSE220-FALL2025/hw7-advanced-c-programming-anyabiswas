@@ -48,10 +48,32 @@ bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
 }
 
 matrix_sf* find_bst_sf(char name, bst_sf *root) {
-    return NULL;
+    bst_sf *cur = root;
+
+    while (cur != NULL) {
+        if (name == cur->mat->name) {
+            return cur->mat;     
+        }
+        else if (name < cur->mat->name) {
+            cur = cur->left_child;
+        }
+        else {
+            cur = cur->right_child;
+        }
+    }
+    return NULL; 
+
 }
 
 void free_bst_sf(bst_sf *root) {
+    if (root == NULL) return;
+
+    free_bst_sf(root->left_child);
+    free_bst_sf(root->right_child);
+
+    free(root->mat);
+
+    free(root);
     
 }
 

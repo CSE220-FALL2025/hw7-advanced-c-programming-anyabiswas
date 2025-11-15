@@ -1,8 +1,8 @@
 {
   "id": "Criterion v2.4.2-24-g8ffe624 (bleeding)",
-  "passed": 40,
-  "failed": 30,
-  "errored": 10,
+  "passed": 43,
+  "failed": 27,
+  "errored": 7,
   "skipped": 0,
   "test_suites": [
     {
@@ -166,28 +166,25 @@
     },
     {
       "name": "base_find_bst",
-      "passed": 0,
-      "failed": 3,
-      "errored": 3,
+      "passed": 3,
+      "failed": 0,
+      "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "search_bst03",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 9,
+          "status": "PASSED"
         },
         {
           "name": "search_bst02",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 5,
+          "status": "PASSED"
         },
         {
           "name": "search_bst01",
-          "assertions": 0,
-          "status": "ERRORED",
-          "messages": ["The test crashed."]
+          "assertions": 3,
+          "status": "PASSED"
         }
       ]
     },
@@ -504,12 +501,12 @@
       "skipped": 0,
       "tests": [
         {
-          "name": "create01",
+          "name": "create02",
           "assertions": 4,
           "status": "PASSED"
         },
         {
-          "name": "create02",
+          "name": "create01",
           "assertions": 4,
           "status": "PASSED"
         }
