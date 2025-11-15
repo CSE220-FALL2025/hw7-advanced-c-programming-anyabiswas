@@ -334,16 +334,67 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
 
     free(postfix);
     free(stack);
-
     
     final->name = name;
-
     return final;
 }
 
-
 matrix_sf *execute_script_sf(char *filename) {
-    return NULL;
+    FILE *file = fopen(filename, "r");
+    if (!file) return NULL;
+
+    bst_sf *root = NULL;
+    matrix_sf *last_matrix = NULL;
+
+    char *str = NULL;
+    size_t max_len = MAX_LINE_LEN;   
+
+    while (getline(&str, &max_len, file) != -1) {
+
+        char *p = str;
+        while (*p && isspace((unsigned char)*p)) p++;
+        if (*p == '\0') continue;
+
+        char name = 0;
+        for (int i = 0; str[i] != '\0'; i++) {
+            if (str[i] >= 'A' && str[i] <= 'Z') {
+                name = str[i];
+                break;
+            }
+        }
+        if (!name) continue;   
+
+        char *eq = strchr(str, '=');
+        if (!eq) continue;
+        eq++;  
+
+        while (*eq && isspace((unsigned char)*eq)) eq++;
+
+        int literal = 0;
+        for (int i = 0; eq[i] != '\0'; i++) {
+            if (eq[i] == '[') {
+                literal = 1;
+                break;
+            }
+        }
+
+        matrix_sf *mat;
+
+        if (literal) {
+            mat = create_matrix_sf(name, eq);
+        }
+        else {
+            mat = evaluate_expr_sf(name, eq, root);
+        }
+
+        root = insert_bst_sf(mat, root);
+        last_matrix = mat;
+    }
+
+    free(str);
+    fclose(file);
+
+    return last_matrix;
 }
 
 // This is a utility function used during testing. Feel free to adapt the code to implement some of
